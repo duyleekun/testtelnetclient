@@ -20,7 +20,7 @@ import java.util.Date;
 import org.apache.commons.net.telnet.TelnetClient;
 
 public class TelnetServiceDeployed {
-    private String host = "localhost";
+    private String host = "148.251.3.174";
     private String user = "user";
     private String password = "pass";
     private int port;

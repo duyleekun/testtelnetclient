@@ -16,7 +16,7 @@ public class TelnetServiceOnGit {
 	private String password;*/
 
 
-    private String host = "localhost";
+    private String host = "148.251.3.174";
 
     private String user = "user";
 
