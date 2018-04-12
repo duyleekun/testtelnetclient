@@ -18,6 +18,8 @@ public class PooledTelnetService {
     private GenericObjectPool<MyTelnetClient> pool;
     private long timeout = 2000;
 
+
+
     public PooledTelnetService() {
         pool = new GenericObjectPool<MyTelnetClient>(new PooledObjectFactory<MyTelnetClient>() {
             public PooledObject<MyTelnetClient> makeObject() throws Exception {
@@ -94,5 +96,21 @@ public class PooledTelnetService {
             n++;
         } while (ret == null);
         return ret;
+    }
+
+    public int getNumActive() {
+        return pool.getNumActive();
+    }
+
+    public int getNumIdle() {
+        return pool.getNumIdle();
+    }
+
+    public long getMeanActiveTimeMillis() {
+        return pool.getMeanActiveTimeMillis();
+    }
+
+    public long getMeanIdleTimeMillis() {
+        return pool.getMeanIdleTimeMillis();
     }
 }

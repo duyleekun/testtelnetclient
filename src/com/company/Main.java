@@ -17,7 +17,7 @@ public class Main {
             Thread thread = new Thread() {
                 @Override
                 public void run() {
-                    for (int loopId = 0; loopId < 5; loopId++) {
+                    for (int loopId = 0; loopId < 100; loopId++) {
                         System.out.println(pool.sendCommand(Thread.currentThread().getId() + " " + String.valueOf(loopId)));
                     }
                 }
@@ -25,8 +25,18 @@ public class Main {
             thread.start();
             threads.push(thread);
         }
-        for (Thread thread: threads) {
-            thread.join();
-        }
+        new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    System.out.println(String.format("active %d idle %d",pool.getNumActive(), pool.getNumIdle()));
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.start();
     }
 }
